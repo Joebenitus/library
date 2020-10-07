@@ -1,0 +1,49 @@
+<h2 class='display-1'>Books</h2>
+<div class="card-columns">
+  <div class="card">
+    <img class="card-img-top" src="holder.js/100x180/" alt="">
+    <div class="card-body">
+      <h4 class="card-title">Books</h4>
+      <p class="card-text">Here are some titles we offer.</p>
+      <% if @books.any? %>
+      <ul>
+        <% @books.each do |book| %>
+      <li><a href="/main/<%= book.id %>"><%= book.title %> by <%= book.author %></a></li>
+        <% end %>
+      </ul>
+      <% else %>
+        <p>There are currently no books to display.</p>
+      <% end %>
+
+      <form action="/new_book" method="get">
+        <button type="submit" id="addabook" class="btn btn-primary" btn-lg btn-block">Add a Book</button>
+      </form>
+
+      <%# <button type="button" id="updateabook" class="btn btn-primary" btn-lg btn-block">Update a Books Info</button>
+      <button type="button" id="removeabook" class="btn btn-primary" btn-lg btn-block">Remove a Book from Circulation</button> %>
+    </div>
+  </div>
+  <hr>
+  <div class="card">
+    <img class="card-img-top" src="holder.js/100x180/" alt="">
+    <div class="card-body">
+      <h4 class="card-title">Authors</h4>
+      <p class="card-text">You can check out books written by these authors.</p>
+            <button type="button" id="addanauthor" class="btn btn-primary" btn-lg btn-block">Add an Author</button>
+      <button type="button" id="updateanauthor" class="btn btn-primary" btn-lg btn-block">Update an Author's Info</button>
+      <button type="button" id="removeanauthor" class="btn btn-primary" btn-lg btn-block">Delete an Author</button>
+    </div>
+  </div>
+  <hr>
+    <div class="card">
+    <img class="card-img-top" src="holder.js/100x180/" alt="">
+    <div class="card-body">
+      <h4 class="card-title">Library Users</h4>
+      <p class="card-text">Manage Users</p>
+      <button type="button" id="addaperson" class="btn btn-primary" btn-lg btn-block">Add a person</button>
+      <button type="button" id="updateaperson" class="btn btn-primary" btn-lg btn-block">Update a user's Info</button>
+      <button type="button" id="removeaperson" class="btn btn-primary" btn-lg btn-block">Remove a user</button>
+    </div>
+  </div>
+  </div>
+</div>

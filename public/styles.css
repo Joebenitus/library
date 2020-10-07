@@ -1,0 +1,13 @@
+body{
+  font-family: 'Libre Baskerville', serif;
+  background-color:#FFF8E7;
+  color:darkslategray;
+}
+card{
+  border:10px;
+  border-color:lightslategray;
+}
+form{
+  padding-top: 40px;
+  padding-bottom:20px;
+}
