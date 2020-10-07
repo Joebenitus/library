@@ -18,7 +18,7 @@ class Book
       title = item.fetch("title")
       author = item.fetch("author")
       id = item.fetch("id")
-      books.push(Book.new({:author => author, :title => title, :id => nil}))
+      books.push(Book.new({:author => author, :title => title, :id => id}))
     end
     books
   end

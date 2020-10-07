@@ -9,13 +9,13 @@ class People
 
   def self.all
     returned_people = DB.exec("SELECT * FROM people;")
-    people = []
+    allpeople = []
     returned_people.each() do |item|
       name = item.fetch("name")
       id = item.fetch("id").to_i
-      people.push(People.new({:name => name, :id => id}))
+      allpeople.push(People.new({:name => name, :id => id}))
     end
-    people
+    allpeople
   end
 
   def ==(people_to_compare)
