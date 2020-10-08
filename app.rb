@@ -32,6 +32,7 @@ post('/new_book') do
   newauthor = Author.new({author: author, id: nil })
   book.save
   newauthor.save
+  newauthor.update({book: book.title})
   redirect to('/main')
 end
 
@@ -69,10 +70,26 @@ delete('/book/:id') do
 end
 
 get('/author/:id') do
+  @author = Author.find(params[:id].to_i())
+  @bookbyauthor = @author.books()
   erb(:author)
+end
+
+get('/user/:id') do
+  @user = People.find(params[:id].to_i())
+  erb(:user)
 end
 
 get('/author/:id/edit') do
   @author = Author.find(params[:id].to_i())
   erb(:author_edit)
+end
+
+patch('/author/:id')do
+  name = params[:author_name]
+  @author = Author.find(params[:id].to_i())
+  if name != ''
+    @author.update({:author => name})
+  end
+  redirect to('/main')
 end

@@ -1,4 +1,14 @@
-<h2>Author <%= @author.author %></h2>
+<h2 class='display-1'>Author: <%= @author.author %></h2>
 
+<h3>More from <%= @author.author %></h3>
+ <% if @bookbyauthor.any? %>
+      <ul>
+        <% @bookbyauthor.each do |book| %>
+      <li><a href="/book/<%= book.id %>"><%= book.title %></a></li>
+      </ul>
+      <% end%>
+      <% else %>
+        <p>There are currently no books to display.</p>
+      <% end %>
 <p><a href="/author/<%= @author.id %>/edit">Update author name</a></p>
 <p><a href="/main">Return to home page</a></p>

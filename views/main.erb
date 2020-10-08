@@ -31,16 +31,14 @@
       <p class="card-text">You can check out books written by these authors.</p>
         <% if @authors.any? %>
       <ul>
-        <% @authors.each do |item| %>
-      <li><a href="/author/<%= item.id %>"> <%= item.author %></a></li>
+        <% @authors.each do |author| %>
+      <li><a href="/author/<%=author.id%>"> <%= author.author %></a></li>
         <% end %>
       </ul>
       <% else %>
         <p>There are currently no authors to display.</p>
       <% end %>
             <button type="button" id="addanauthor" class="btn btn-primary" btn-lg btn-block">Add an Author</button>
-      <button type="button" id="updateanauthor" class="btn btn-primary" btn-lg btn-block">Update an Author's Info</button>
-      <button type="button" id="removeanauthor" class="btn btn-primary" btn-lg btn-block">Delete an Author</button>
     </div>
   </div>
   <hr>
