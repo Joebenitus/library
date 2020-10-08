@@ -29,10 +29,10 @@
     <div class="card-body">
       <h4 class="card-title">Authors</h4>
       <p class="card-text">You can check out books written by these authors.</p>
-         <% if @authors.any? %>
+        <% if @authors.any? %>
       <ul>
-        <% @authors.each do |author| %>
-      <li><a href="/main/<%= author.id %>"> <%= author.author %></a></li>
+        <% @authors.each do |item| %>
+      <li><a href="/author/<%= item.id %>"> <%= item.author %></a></li>
         <% end %>
       </ul>
       <% else %>
@@ -50,20 +50,23 @@
       <h4 class="card-title">Library Users</h4>
       <p class="card-text">Manage Users</p>
       <form action = '/people' method='post'>
-      <input type='text' id='person_name'>
-      <button type="submit" id="addaperson" class="btn btn-primary" btn-lg btn-block">Add a person</button>
+      <input type='text' name='person_name' id='person_name'>
+      <button type="submit" class="btn btn-primary" btn-lg btn-block">Add a person</button>
       </form>
+      <br>
+      <button type="button" id="updateaperson" class="btn btn-primary" btn-lg btn-block">Update a user's Info</button>
+      <button type="button" id="removeaperson" class="btn btn-primary" btn-lg btn-block">Remove a user</button>
+      <br>
       <ul>
-       <% if @patron.any? %>
+      <br>
+      <% if @patron.any? %>
         <% @patron.each do |item| %>
-      <li><a href="/main/<%= item.id %>"> <%= item.name %></a></li>
+      <li><a href="/people/<%= item.id %>"> <%= item.name %></a></li>
         <% end %>
       </ul>
       <% else %>
         <p>There are currently no library users to display.</p>
       <% end %>
-      <button type="button" id="updateaperson" class="btn btn-primary btn-lg btn-block">Update a user's Info</button>
-      <button type="button" id="removeaperson" class="btn btn-primary btn-lg btn-block">Remove a user</button>
     </div>
   </div>
   </div>

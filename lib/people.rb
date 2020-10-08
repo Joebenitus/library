@@ -23,7 +23,7 @@ class People
   end
 
   def save
-    result = DB.exec("INSERT INTO people (name) VALUES ('#{@name}') RETURNING id")
+    result = DB.exec("INSERT INTO people (name) VALUES ('#{@name}') RETURNING id;")
     @id = result.first().fetch("id").to_i
   end
 

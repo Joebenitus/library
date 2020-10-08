@@ -46,8 +46,19 @@ describe('#Authors') do
     it('updates an author in the database') do
       author1 = Author.new({author: 'JK Rowling', id:4})
       author1.save
-      author1.update("Tim Jones")
+      author1.update({author: "Tim Jones"})
       expect(author1.author).to(eq("Tim Jones"))
+    end
+  end
+
+  describe('#update') do
+    it('adds a book to an author') do
+      author1 = Author.new({:author => 'JK Rowling', :id => nil})
+      author1.save
+      book1 = Book.new({title: 'Harry Potter', author: 'JK Rowling', id: nil})
+      book1.save
+      author1.update({book: 'Harry Potter'})
+      expect(author1.books).to(eq([book1]))
     end
   end
 end

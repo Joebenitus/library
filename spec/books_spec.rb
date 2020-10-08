@@ -50,4 +50,13 @@ describe('#Book') do
       expect(book1.title).to(eq("harry potter 2"))
     end
   end
+
+  describe('#check_out') do
+  it('updates a book in the database') do
+    book1 = Book.new({title: 'harry potter', author: 'JK Rowling', id:4})
+    book1.save
+    book1.update('harry potter 2')
+    expect(book1.title).to(eq("harry potter 2"))
+  end
+end
 end

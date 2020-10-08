@@ -43,8 +43,30 @@ class Author
     end
   end
 
-  def update(author)
-    @author = author
-    DB.exec("UPDATE authors SET author = '#{@author}' WHERE id = #{@id};")
+  def update(attributes)
+    if (attributes.has_key?(:author)) && (attributes.fetch(:author) != nil)
+      @author = attributes.fetch(:author)
+      DB.exec("UPDATE authors SET author = '#{@author}' WHERE id = #{@id};")
+    elsif (attributes.has_key?(:book)) && (attributes.fetch(:book) != nil)
+      book_title = attributes.fetch(:book)
+      book = DB.exec("SELECT * FROM books WHERE lower(title)='#{book_title.downcase}';").first
+      if book != nil
+        DB.exec("INSERT INTO authors_books (author_id, book_id) VALUES (#{@id}, #{book['id'].to_i});")
+      end
+    end
+  end
+
+  def books
+    books = []
+    results = DB.exec("SELECT book_id FROM authors_books WHERE author_id = #{@id};")
+    results.each do |result|
+      book_id = result.fetch('book_id')
+      book = DB.exec("SELECT * FROM books WHERE id = #{book_id};")
+      #binding.pry
+      title = book.first.fetch('title')
+      author = book.first.fetch('author')
+      books.push(Book.new({title: title, id: book_id, author: author}))
+    end
+    books
   end
 end

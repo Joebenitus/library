@@ -39,7 +39,7 @@ post('/people') do
 name = params[:person_name]
 libraryuser = People.new({name: name, id: nil })
 libraryuser.save()
-redirect to ('/main')
+redirect to('/main')
 end 
 
 get('/book/:id') do
@@ -49,5 +49,30 @@ get('/book/:id') do
 end
 
 get('/book/:id/edit') do
+  @book = Book.find(params[:id].to_i())
   erb(:book_edit)
+end
+
+patch('/book/:id')do
+  title = params[:book_title]
+  @book = Book.find(params[:id].to_i())
+  if title != ''
+    @book.update(title)
+  end
+  redirect to('/main')
+end
+
+delete('/book/:id') do
+  @book = Book.find(params[:id].to_i())
+  @book.delete
+  redirect to('/main')
+end
+
+get('/author/:id') do
+  erb(:author)
+end
+
+get('/author/:id/edit') do
+  @author = Author.find(params[:id].to_i())
+  erb(:author_edit)
 end
